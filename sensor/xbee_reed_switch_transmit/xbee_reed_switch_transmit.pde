@@ -1,10 +1,14 @@
-const int inPin = 2;   // choose the input pin (for a reed switch)
+#include <NewSoftSerial.h>
+
+const int inPin = 8;   // choose the input pin (for a reed switch)
 const int pingPin = 7; //ping sensor
 int val = 0;     // variable for reading the pin status
+NewSoftSerial XBeeSerial(3,4);
 
 void setup() {
   pinMode(inPin, INPUT);    // declare pushbutton as input
   Serial.begin(9600);
+  XBeeSerial.begin(9600);
 }
 
 void loop(){
@@ -28,15 +32,19 @@ void loop(){
   cm = microsecondsToCentimeters(duration);
   if (inches > 24){
     Serial.print("PG");
+    XBeeSerial.print("PG");
   }else{
     Serial.print("PR");
+    XBeeSerial.print("PR");
   }
   
   val = digitalRead(inPin);  // read input value of 
   if (val == HIGH) {
     Serial.print("SG");
+    XBeeSerial.print("SG");
   } else {
     Serial.print("SR");
+    XBeeSerial.print("SR");
   }
   delay(5000);
 }

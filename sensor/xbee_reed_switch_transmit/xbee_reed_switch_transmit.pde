@@ -1,9 +1,9 @@
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 
 const int inPin = 8;   // choose the input pin (for a reed switch)
 const int pingPin = 7; //ping sensor
 int val = 0;     // variable for reading the pin status
-NewSoftSerial XBeeSerial(3,4);
+SoftwareSerial XBeeSerial(3,4);
 
 void setup() {
   pinMode(inPin, INPUT);    // declare pushbutton as input
